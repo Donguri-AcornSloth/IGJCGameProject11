@@ -24,12 +24,15 @@ public class PlayerController : MonoBehaviour
         targetPos = new Vector3(0f, gameObject.transform.position.y, gameObject.transform.position.z);
         playerPos = targetPos;
         charaCon = GetComponent<CharacterController>();
+        trans = GetComponent<Transform>();
+        trans = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
         groundedPlayer = charaCon.isGrounded;
+        playerPos = gameObject.transform.position;
         if(groundedPlayer&&playerVerocity.y<0)
         {
             playerVerocity.y = 0f;
@@ -61,6 +64,6 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        gameObject.transform.position = playerPos;
+        trans.position=playerPos;
     }
 }
