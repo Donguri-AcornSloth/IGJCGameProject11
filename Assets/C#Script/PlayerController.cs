@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 targetPos;
     public Vector3 playerPos;
     public Vector3 playerVerocity;
+    public SpeedManager speedManager;
     Transform trans;
     Rigidbody rigid;
 
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
         playerPos = targetPos;
         charaCon = GetComponent<CharacterController>();
         trans = GetComponent<Transform>();
-        trans = GetComponent<Transform>();
+        speedManager = GetComponent<SpeedManager>();
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
         }
         playerVerocity.y += gravity * Time.deltaTime;
         charaCon.Move(playerVerocity * Time.deltaTime);
+        
         if(groundedPlayer&&Input.GetKey(JumpKey))
         {
             playerVerocity.y += jumpForce * -1.0f * gravity;

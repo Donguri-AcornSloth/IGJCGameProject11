@@ -36,6 +36,7 @@ public class SpeedManager : MonoBehaviour
         {
             setSpeed = normalSpeed;
             time = 0;
+            delay = false;
         }
         if (time2 == 0)
         {
@@ -43,14 +44,7 @@ public class SpeedManager : MonoBehaviour
             setSpeed = obstacleSpeed;
             //Debug.Log("Delay");
             time2 = -1;
-        }
-        if (delay==true)
-        {
-            setSpeed = obstacleSpeed;
-        }
-        if(hold==true)
-        {
-            setSpeed = 0;
+            hold = false;
         }
         
     }
@@ -60,17 +54,20 @@ public class SpeedManager : MonoBehaviour
         {
             time = obstacleDelayTime * 50;
             setSpeed = obstacleSpeed;
+            delay = true;
         }
         if(other.gameObject.tag=="SpiderWeb")
         {
             time = spiderDelayTime * 50;
             setSpeed = spiderwebSpeed;
+            delay = true;
         }
         if(other.gameObject.tag=="Tornado")
         {
             time2 = tornadoHoldTime * 50;
             time = tornadoDelayTime * 50 + tornadoHoldTime * 50;
-            setSpeed = 0f;
+            setSpeed = 0.1f;
+            hold = true;
         }
     }
 }
