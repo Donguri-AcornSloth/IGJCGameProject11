@@ -7,21 +7,34 @@ public class EnemyGeneretor : MonoBehaviour
     public GameObject[] Enemy;
     public int generateObjectId;
     public int generatedObjectId;
-    public float generateTime;
+    public float generateSetTime;
     public int courseId;
     public int time;
     public Vector3 generatePos;
+
+    public SpeedManager speedManager;
+    public float generatenormalTime;
+    public float generateDelayTime;
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
+        generateSetTime = generatenormalTime;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         time += 1;
-        if(time>=generateTime*50)
+        if(speedManager.delay==true)
+        {
+            generateSetTime = generateDelayTime;
+        }
+        if(speedManager.hold==true)
+        {
+            return;      
+        }
+        if(time>=generateSetTime*50)
         {
             generateObjectId = Random.Range(0, Enemy.Length);
             while(generatedObjectId==generateObjectId)
